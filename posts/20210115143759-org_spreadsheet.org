@@ -1,6 +1,6 @@
 #+title: org-spreadsheet
-#+roam_tags: emacs org
-#+roam_key: https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html
+#+date: <2021-01-15 Fri 18:53>
+#+filetags: emacs org
 
 * Intro 
 This is getting pretty interesting. The spreadsheet functionality of org-tables
@@ -126,7 +126,16 @@ Nice! No floating point fudgery. (You'll notice I added some more items to
 wait for now, dinner's cooking and I still have to see how well this page
 publishes!
 
+* Sources
+
++ https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html[fn:4]
+
 * Footnotes
+
+[fn:4]I captured this from an ~org-roam entry~, so there's a few inconsistencies
+(that this commit will remedy). Regarding meta-data only. Some smoothing will be
+done to my exporting from ~org-roam~ a single keypress, but it's manually done
+for this entry.
 
 [fn:3]which I've bound to ~C-c o c~, so ~C-c o c f~ invokes the Food Log
 template
