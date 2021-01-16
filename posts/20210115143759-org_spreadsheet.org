@@ -1,0 +1,138 @@
+#+title: org-spreadsheet
+#+roam_tags: emacs org
+#+roam_key: https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html
+
+* Intro 
+This is getting pretty interesting. The spreadsheet functionality of org-tables
+is more impressive than I would have guessed. For small example here's a
+snapshot of a ~diet.org~ file I've been working on.
+
+: * Food Lookup Table
+: #+TBLNAME: nutrition
+: | name           | cal/g | fat%g | carb%g | prot%g |
+: |----------------+-------+-------+--------+--------|
+: | corn beef hash |  1.64 |    10 |     10 |      7 |
+
+: * Food Log
+: #+TBLNAME: diet
+: | timestamp              | name           | grams | cal/g | calories |
+: |------------------------+----------------+-------+-------+----------|
+: | [2021-01-15 Fri 13:35] | corn beef hash |   198 |  1.64 |   324.72 |
+: #+TBLFM: $4='(org-lookup-first $2 '(remote(nutrition, @2$1..@>$1)) '(remote(nutrition, @2$2..@>$2)))::$5=$4*$3
+
+Put the point on the last line, ~C-c C-c~, and ta-da!
+
+* Capture
+
+I'm lazy, so remembering how to record things is a bit more work than I want to
+do regularly, especially since I know I don't have to with ~org-capture~. I've
+been having some fun with it lately as I've started using ~org-roam~ which has
+an extension to the already featureful ~org-capture~. Here I want to capture two
+different things
+1. Nutrition of a food
+2. Amount of foot eaten
+With the functionality of org tables I know I can do some computations very
+easily with the information entered so that's the kind of capture I'll use.
+After staring at the documentation of ~org-capture-templates~ for a while I
+arrive at
+
+#+begin_src emacs-lisp
+(add-to-list
+ 'org-capture-templates
+ '(("f" "Food Log" table-line (file+headline "~/org/log.org" "Food Log")
+    "| %U | %^{name} | %^{grams} | | |"
+    :prepend t :immediate-finish t
+    )
+   ("F" "Food Nutrients" table-line (file+headline "~/org/log.org" "Food Nutrients")
+    "| %^{name} | %^{cal/g} | %^{fat%g} | %^{carb%g} | %^{prot%g} | "
+    :prepend t :immediate-finish t
+    )))
+#+end_src
+
+Reviewing, we have a list ~org-capture-templates~ which contains a list that
+defines the capture behavior. Check out the documentation of that variable for a
+full explanation. The spec of the sublists is:
+
+~(key description type target template . properties)~
+
+The first two are obvious, they configure the interface for this template from
+the ~org-capture~ dispatch[fn:3]. The type I use is ~table-line~, which searches
+for the first table at its ~target~. We can configure the location within the
+table with the ~:table-line-pos~ property, but instead I format the tables to
+please the expected defaults, which (per capture-template) is a single table
+with static column names. This lends itself to a quick-entry-quit cycle defined
+with the ~:immediate-finish~ property combined with prompts for all necessary
+data. I ~:prepend~ mostly stylistically, it's nicer to read /IMHO/.
+
+* Getting deeper
+
+This seems to work out well as a quick method for recording diet. Everything is
+normalized around grams and cal[fn:1] because that's the most straightforward
+way. Nutritional science is a mystery to me, but I believe tracking
+macronutrients should suffice for the level of insight I can make. Micronutrient
+tracking can be done in parallel and in more of a goal based method, rather than
+logging. At some point in future I could do something like the nutrition lookup
+table demonstrated above, or something else... not even sure what ought be
+tracked. 
+
+What I would like to do next is make a third table which is calculated based off
+of the first two, which displays the sum of calories consumed in a day along
+with the relative proportion per macronutrient. My first thought is the lookup
+would be complicated by the presence of time in the diet table timestamp. So
+remove that for now...[fn:2] In fact that'll be the target, just the sum of
+calories in a day. The information about proportion can be done in a separate
+formula, and should prove to be much more complex. Initially online I find [[https://emacs.stackexchange.com/questions/61391/org-mode-sum-time-from-remote-table-with-org-lookup-all][this
+page]] which is instructive.
+
+Indeed, with a little hacking I have a working example, although it's a bit more
+invloved than desired. We'll get to that later.
+
+I add a filter one the first columnt of the diet table
+
+: #+begin_src emacs-lisp :var x=diet[1:-1]
+: (delete-dups (mapcar (lambda (y) (list (car y))) x))
+: #+end_src
+
+Which provides me with the deduplicated list of dates.
+
+: | [2021-01-15 Fri] |
+
+Name this, and sprinkle in some ~org-table~ magic.
+
+: #+TBLNAME: dietdaily
+: | timestamp        |          calories |
+: |------------------+-------------------|
+: | [2021-01-15 Fri] | 626.5400000000001 |
+: #+TBLFM: $2='(apply '+ (mapcar 'string-to-number (org-lookup-all $1 '(remote(diet,@2$1..@>$1)) '(remote(diet,@2$5..@>$5)))))
+
+Perfect! Well, actually this is way more involved than I want. I want to point
+at a block and say "Do this!" and see it be done. Luckily these are fore-blazed
+trails. Some people must use these spreadsheet feature a lot! They went and
+wrote [[https://github.com/tbanel/orgaggregate][this]] to generate tables from your tables. It is much better... with just
+
+: #+begin: aggregate :table diet :cols "timestamp vsum(calories)"
+: #+end
+
+*/C-c C-c/*
+
+: #+begin: aggregate :table diet :cols "timestamp vsum(calories)"
+: | timestamp        | vsum(calories) |
+: |------------------+----------------|
+: | [2021-01-15 Fri] |         626.54 |
+: #+end
+
+Nice! No floating point fudgery. (You'll notice I added some more items to
+~diet~ for a sum). Representing the proportion of macronutrients will have to
+wait for now, dinner's cooking and I still have to see how well this page
+publishes!
+
+* Footnotes
+
+[fn:3]which I've bound to ~C-c o c~, so ~C-c o c f~ invokes the Food Log
+template
+
+[fn:2]There is some interest in the time of day one eats, with respect to
+intermittent fasting, but for our purposes a resolution of per-day suffices
+
+[fn:1]America uses ~Cal~ where elsewhere uses ~kcal~, I'll use the middle ground
+~cal~ to ensure incorrectness
