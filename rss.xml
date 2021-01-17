@@ -4,7 +4,71 @@
 <title><![CDATA[jasblog]]></title>
 <description><![CDATA[jasblog]]></description>
 <link>https://jasbrg.github.io/</link>
-<lastBuildDate>Sat, 16 Jan 2021 18:02:03 -0600</lastBuildDate>
+<lastBuildDate>Sat, 16 Jan 2021 19:24:01 -0600</lastBuildDate>
+<item>
+  <title><![CDATA[Emacsen Blog Links]]></title>
+  <description><![CDATA[
+<p>
+Here are a few Emacs blogs I like!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> elfeed-feeds
+        '((<span class="org-string">"https://wingolog.org/feed/atom"</span> emacs blog)
+          (<span class="org-string">"http://cachestocaches.com/feed"</span> emacs blog)
+          (<span class="org-string">"https://jherrlin.github.io/index.xml"</span> emacs blog)
+          (<span class="org-string">"https://nyxt.atlas.engineer/feed"</span> emacs lisp blog)
+          (<span class="org-string">"https://www.murilopereira.com/index.xml"</span> emacs blog)
+          (<span class="org-string">"https://daryl.wakatara.com/rss.xml"</span> emacs blog)
+          (<span class="org-string">"https://alhassy.github.io/rss.xml"</span> emacs lisp blog)
+          (<span class="org-string">"https://www.philnewton.net/blog/feed/"</span> emacs blog)
+          (<span class="org-string">"https://karl-voit.at/feeds/lazyblorg-all.atom_1.0.links-only.xml"</span> emacs blog)))
+</pre>
+</div>
+<div class="taglist"><a href="https://jasbrg.github.io/tags.html">Tags</a>: <a href="https://jasbrg.github.io/tag-emacs.html">emacs</a> <a href="https://jasbrg.github.io/tag-links.html">links</a> </div>]]></description>
+  <category><![CDATA[emacs]]></category>
+  <category><![CDATA[links]]></category>
+  <link>https://jasbrg.github.io/2021-01-16-emacsen-blog-links.html</link>
+  <pubDate>Sat, 16 Jan 2021 18:41:00 -0600</pubDate>
+</item>
+<item>
+  <title><![CDATA[Zathura from the Mountain]]></title>
+  <description><![CDATA[
+<p>
+Part of my resolutions for the new year is to blog as often as possible, which
+would have felt rather indulgent and narcissistic when I was older, but I'm
+younger than that now. The word itself I find unattractive, the 'b' bursting
+from pursed lips, the 'l' scraping past hard palate, the 'o' filling the mouth
+with its round sound conjuring a glottal 'g'. It's charming though, in its
+clumsiness. Originating from "web log" from when the internet was young and the
+uses of the medium were less usual, more strange. Regardless of the history of
+blogging it is today a useful source of technical information, as the people who
+generally still have blogs are technical people. Laymen have services and
+platforms with lower barrier to entry and maintenance, though this usually
+entails being as the product bought and sold. Not very condusive to privacy,
+security, or sanity to have quantifications of your essential nature bundled up
+and sold en masse to the highest bidder aiming for your demo.
+</p>
+
+<p>
+Blogging in comparison is much more wholesome so I'm not as concerned with my
+potential narcissism for running one. To me at this moment keeping this blog is
+a way to require something of myself which is presentable, so at least the
+potential for an audience is necessary to motivate myself into keeping to that.
+This comes at time when general precautionary measures are in effect so as to
+avoid infection by disease, meaning contact with other people is rather scarce.
+We're a social creature, humans. If you doubt this to any degree, just look to
+the punitive system where solitary confinement is among the harshest punishments
+that can be levied. We simply require contact, there is no two-ways about it.
+The Hermit may momentarily escape the trappings of civilization in the
+mountains, but the only way for his solitude to have meaning is for it to
+eventually end. 
+</p>
+<div class="taglist"><a href="https://jasbrg.github.io/tags.html">Tags</a>: <a href="https://jasbrg.github.io/tag-musing.html">musing</a> </div>]]></description>
+  <category><![CDATA[musing]]></category>
+  <link>https://jasbrg.github.io/2021-01-16-keeping-web-log.html</link>
+  <pubDate>Sat, 16 Jan 2021 18:06:00 -0600</pubDate>
+</item>
 <item>
   <title><![CDATA[org-spreadsheet]]></title>
   <description><![CDATA[
@@ -12,16 +76,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdad8e43">1. Intro</a></li>
-<li><a href="#orge1c214d">2. Capture</a></li>
-<li><a href="#org73277f0">3. Getting deeper</a></li>
-<li><a href="#orgd105089">4. Sources</a></li>
+<li><a href="#org94e57ec">1. Intro</a></li>
+<li><a href="#org0302d8e">2. Capture</a></li>
+<li><a href="#orgffc8e7a">3. Getting deeper</a></li>
+<li><a href="#org86caca4">4. Sources</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgdad8e43" class="outline-2">
-<h2 id="orgdad8e43"><span class="section-number-2">1</span> Intro</h2>
+<div id="outline-container-org94e57ec" class="outline-2">
+<h2 id="org94e57ec"><span class="section-number-2">1</span> Intro</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 This is getting pretty interesting. The spreadsheet functionality of org-tables
@@ -54,8 +118,8 @@ Put the point on the last line, <code>C-c C-c</code>, and ta-da!
 </div>
 </div>
 
-<div id="outline-container-orge1c214d" class="outline-2">
-<h2 id="orge1c214d"><span class="section-number-2">2</span> Capture</h2>
+<div id="outline-container-org0302d8e" class="outline-2">
+<h2 id="org0302d8e"><span class="section-number-2">2</span> Capture</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 I'm lazy, so remembering how to record things is a bit more work than I want to
@@ -112,8 +176,8 @@ data. I <code>:prepend</code> mostly stylistically, it's nicer to read <i>IMHO</
 </div>
 </div>
 
-<div id="outline-container-org73277f0" class="outline-2">
-<h2 id="org73277f0"><span class="section-number-2">3</span> Getting deeper</h2>
+<div id="outline-container-orgffc8e7a" class="outline-2">
+<h2 id="orgffc8e7a"><span class="section-number-2">3</span> Getting deeper</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 This seems to work out well as a quick method for recording diet. Everything is
@@ -210,8 +274,8 @@ publishes!
 </div>
 </div>
 
-<div id="outline-container-orgd105089" class="outline-2">
-<h2 id="orgd105089"><span class="section-number-2">4</span> Sources</h2>
+<div id="outline-container-org86caca4" class="outline-2">
+<h2 id="org86caca4"><span class="section-number-2">4</span> Sources</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html">https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html</a><sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></li>
@@ -249,7 +313,7 @@ for this entry.
 </div><div class="taglist"><a href="https://jasbrg.github.io/tags.html">Tags</a>: <a href="https://jasbrg.github.io/tag-emacs.html">emacs</a> <a href="https://jasbrg.github.io/tag-org.html">org</a> </div>]]></description>
   <category><![CDATA[emacs]]></category>
   <category><![CDATA[org]]></category>
-  <link>https://jasbrg.github.io/2021-01-15-org_spreadsheet.html</link>
+  <link>https://jasbrg.github.io/2021-01-15-org-spreatsheet.html</link>
   <pubDate>Fri, 15 Jan 2021 18:53:00 -0600</pubDate>
 </item>
 <item>

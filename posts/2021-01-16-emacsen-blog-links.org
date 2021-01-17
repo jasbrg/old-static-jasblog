@@ -1,0 +1,18 @@
+#+title: Emacsen Blog Links
+#+date: <2021-01-16 18:41>
+#+filetags: emacs links
+
+Here are a few Emacs blogs I like!
+
+#+begin_src emacs-lisp
+(setq elfeed-feeds
+	    '(("https://wingolog.org/feed/atom" emacs blog)
+	      ("http://cachestocaches.com/feed" emacs blog)
+	      ("https://jherrlin.github.io/index.xml" emacs blog)
+	      ("https://nyxt.atlas.engineer/feed" emacs lisp blog)
+	      ("https://www.murilopereira.com/index.xml" emacs blog)
+          ("https://daryl.wakatara.com/rss.xml" emacs blog)
+          ("https://alhassy.github.io/rss.xml" emacs lisp blog)
+          ("https://www.philnewton.net/blog/feed/" emacs blog)
+          ("https://karl-voit.at/feeds/lazyblorg-all.atom_1.0.links-only.xml" emacs blog)))
+#+end_src
