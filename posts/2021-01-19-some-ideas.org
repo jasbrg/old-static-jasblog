@@ -1,0 +1,41 @@
+#+title: Some Ideas
+#+date: <2021-01-19 23:42>
+#+filetags: musing idea
+
+Some ideas I have for projects
+
+* org-capture-android
+[[http://www.orgzly.com/][Orgzly]] is nice, very nice. The interface is pretty impressive for capturing as
+much of Org Mode's functionality as it does, but it's more than I quite need or
+want especially because I'm using a [[https://www.unihertz.com/jelly-2.html][Jelly 2]], which has a screen under 4" so
+inputing great volumes of text is somewhat prohibitive. Still, I want to
+interface with Org Mode from my phone despite its small size so instead of a
+full featured implementation of Org Mode on Android I simply want the Org
+Capture interface. The ability to program~configure~customize templates for
+inputing some data, and quickly stashing it away is desirable and suitable for
+the limiting form factor of a small phone. Find more information about the
+~org-capture~ templates [[help:org-capture-templates][here]].[fn:1]
+
+There appears to be some integration thought of for a mobile
+protocol [[https://orgmode.org/manual/Org-Mobile.html][here]] but I can't tell if this has been abandoned since. I recall a
+"Mobile Org" app at some point but it has been superseded by Orgzy. 
+
+* org-babel-wolfram-alpha
+An Org Babel interface. Querying WolframAlpha from Org-mode is potentially
+useful for a computational notebook, fluently accessing the data available in
+either textual, image, or mathematica formats. The last being useful with
+~ob-mathematica~. Inspired by ~ob-rest~ for its design.
+
+* spirals
+
+upwards or downwards, your choice. find the groove, your /wu wei/, the place
+between being and becoming. Matthew or Pareto, either way a rose hard to name
+
+* Footnotes
+
+[fn:2]That would be if ~org-static-blog~ did anything with it, but from a glance
+it appears it mostly just takes the bit after the colon 
+
+[fn:1]I was curious how the system would handle a ~help:~ link rather than the
+usual ~http:~, no dice, you shouldn't click this link :) in a perfect world it
+would have opened in the nearest \*help\* buffer post-haste[fn:2]
