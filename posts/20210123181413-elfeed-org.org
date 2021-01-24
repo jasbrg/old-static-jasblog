@@ -1,0 +1,51 @@
+#+title: elfeed-org
+#+date: <2021-01-23 18:14>
+#+filetags: emacs musing
+Today I went on a little bit of a rabbit hole when configuring my RSS feeds to
+please ~elfeed-org~. Its configuration is simple enough, a normal org file where
+the headings are feed URLs for ~elfeed~, and the tags are tags and inherited
+normally. Also, org-links are valid and understood. Cool!
+
+Then I tried fitting YouTube channels into this routine, but that wasn't quite
+as trivial. After some experimentation with scripts and [[https://en.wikipedia.org/wiki/Bookmarklet][bookmarklets]] the
+solution I ended up using was to just find and copy the relevant URL
+programmatically with a [[https://greasyfork.org/en/scripts/36357-youtube-copy-channel-rss-feed-url-to-clipboard][user-script]] called through [[https://www.tampermonkey.net/][Tampermonkey]]. It needed a
+small modification, adding
+
+~// @match        https://www.youtube.com/c/*~
+
+to include the apparantly new shortened URLs, there may be more edge cases
+lurking.
+
+Then, I have a couple of entries added to ~org-capture-templates~ the usual way[fn:1]
+
+#+begin_src emacs-lisp
+(add-to-list
+ 'org-capture-templates
+ '("r" "RSS Feed" entry (file+headline "~/org/feeds.org" "Inbox")
+   "*** %^C"
+   :prepend t :immediate-finish t))
+
+(add-to-list
+ 'org-capture-templates
+ '("y" "YouTube Feed" entry (file+headline "~/org/feeds.org" "YouTube")
+   "**** [[%^{Channel Feed URL}][%^{Channel Name}]]"
+   :prepend t :immediate-finish t))
+#+end_src
+
+Ta-da! Done for now, I'm satisfied. Though I can foresee the obvious extension
+of integrating (the lately hotly contested) [[https://github.com/ytdl-org/youtube-dl][youtube-dl]]. Maybe there's already
+some extension? hmm, at least not on ~melpa~ or ~gnu~.
+
+Envision it so: a tag is specified in some way, when the specified tag is added
+to a post (through ~elfeed~), it is marked for download into a specified
+directory. There, I've defined a new Emacs package! :)
+
+There is already an Emacs interface to youtube-dl, [[https://gitlab.com/tuedachu/ytdl][ytdl]]. If this, we'll call it
+~elfeed-ytdl~, has the two packages as a dependency the actual code to achieve
+this functionality is probably under fifty lines. Perhaps!
+
+* Footnotes
+
+[fn:1]Not really as depicted. I use [[https://github.com/jwiegley/use-package][use-package]] because it rocks, but it's good
+practice to keep code examples relevant and if possible, executable.

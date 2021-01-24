@@ -17,6 +17,79 @@
 </div></div>
 <div id="content">
 
+<div class="post-date">23 Jan 2021</div><h1 class="post-title"><a href="https://jasbrg.github.io/20210123181413-elfeed-org.html">elfeed-org</a></h1>
+<p>
+Today I went on a little bit of a rabbit hole when configuring my RSS feeds to
+please <code>elfeed-org</code>. Its configuration is simple enough, a normal org file where
+the headings are feed URLs for <code>elfeed</code>, and the tags are tags and inherited
+normally. Also, org-links are valid and understood. Cool!
+</p>
+
+<p>
+Then I tried fitting YouTube channels into this routine, but that wasn't quite
+as trivial. After some experimentation with scripts and <a href="https://en.wikipedia.org/wiki/Bookmarklet">bookmarklets</a> the
+solution I ended up using was to just find and copy the relevant URL
+programmatically with a <a href="https://greasyfork.org/en/scripts/36357-youtube-copy-channel-rss-feed-url-to-clipboard">user-script</a> called through <a href="https://www.tampermonkey.net/">Tampermonkey</a>. It needed a
+small modification, adding
+</p>
+
+<p>
+<code>// @match        https://www.youtube.com/c/*</code>
+</p>
+
+<p>
+to include the apparantly new shortened URLs, there may be more edge cases
+lurking.
+</p>
+
+<p>
+Then, I have a couple of entries added to <code>org-capture-templates</code> the usual way<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(add-to-list
+ 'org-capture-templates
+ '("r" "RSS Feed" entry (file+headline "~/org/feeds.org" "Inbox")
+   "*** %^C"
+   :prepend t :immediate-finish t))
+
+(add-to-list
+ 'org-capture-templates
+ '("y" "YouTube Feed" entry (file+headline "~/org/feeds.org" "YouTube")
+   "**** [[%^{Channel Feed URL}][%^{Channel Name}]]"
+   :prepend t :immediate-finish t))
+</pre>
+</div>
+
+<p>
+Ta-da! Done for now, I'm satisfied. Though I can foresee the obvious extension
+of integrating (the lately hotly contested) <a href="https://github.com/ytdl-org/youtube-dl">youtube-dl</a>. Maybe there's already
+some extension? hmm, at least not on <code>melpa</code> or <code>gnu</code>.
+</p>
+
+<p>
+Envision it so: a tag is specified in some way, when the specified tag is added
+to a post (through <code>elfeed</code>), it is marked for download into a specified
+directory. There, I've defined a new Emacs package! :)
+</p>
+
+<p>
+There is already an Emacs interface to youtube-dl, <a href="https://gitlab.com/tuedachu/ytdl">ytdl</a>. If this, we'll call it
+<code>elfeed-ytdl</code>, has the two packages as a dependency the actual code to achieve
+this functionality is probably under fifty lines. Perhaps!
+</p>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Not really as depicted. I use <a href="https://github.com/jwiegley/use-package">use-package</a> because it rocks, but it's good
+practice to keep code examples relevant and if possible, executable.
+</p></div></div>
+
+
+</div>
+</div><div class="taglist"><a href="https://jasbrg.github.io/tags.html">Tags</a>: <a href="https://jasbrg.github.io/tag-emacs.html">emacs</a> <a href="https://jasbrg.github.io/tag-musing.html">musing</a> </div>
 <div class="post-date">19 Jan 2021</div><h1 class="post-title"><a href="https://jasbrg.github.io/2021-01-19-some-ideas.html">Some Ideas</a></h1>
 <nav id="table-of-contents">
 <h2>Table of Contents</h2>
@@ -385,53 +458,7 @@ for this entry.
 
 
 </div>
-</div><div class="taglist"><a href="https://jasbrg.github.io/tags.html">Tags</a>: <a href="https://jasbrg.github.io/tag-emacs.html">emacs</a> <a href="https://jasbrg.github.io/tag-org.html">org</a> </div>
-<div class="post-date">14 Jan 2021</div><h1 class="post-title"><a href="https://jasbrg.github.io/2021-01-14-hello.html">Hello</a></h1>
-<p>
-Coming to you from <a href="https://github.com/bastibe/org-static-blog">nearly-nine-hundred lines</a> of Emacs-lisp and a <a href="https://sandyuraz.com/styles/org.min.css">pittance</a> of
-CSS. Do you really need more? <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> In time I'll accumulate more bits and
-pieces of customization and configuration to apply, better expressing myself
-through this site. As it stands now this little veneer suffices, it's never
-really about what's on the cover anyway, but how effective the cover is at
-appealing to those that may appreciate the content. As long as you can make out
-the shapes of these letters in the order I have lain them out and we can speak
-alike, you have some chance of catching my drift.
-</p>
-
-<p>
-More interesting to me, than <code>family=Inconsolata</code>, is the set of pipes and gears
-that thrum and turn making manifest those thoughts cannily caught, cast into
-concrete from what was once ineffable as birdsong's last reflection on a sun
-bleached birch tree. The fleeting formation neurons firing a whispering voice to
-an inner ear which hands can transcribe, digits to digits. Ten to two (that
-is one and zero) and back again, if this bird's song is sweet enough to echo off
-the bark of your mind.
-</p>
-
-<p>
-Emacs has long been my preferred editor, OS, and church. It's just a damn fine
-piece of software.
-</p>
-
-<img src=" https://cdn.vox-cdn.com/thumbor/4p6C2WQTIBKbvVFdYk0q0_l3Wu0=/0x0:2995x3000/920x613/filters:focal(1852x1028:2330x1506):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/54841361/twin_peaks_abc_archives.0.jpg">
-
-<p>
-There isn't much like it, comparisons to other editors are usually misguided
-because it isn't anything like other editors. An old joke is Emacs is a good OS,
-it just lacks a good text editor. A slightly younger joke is, that's true but we
-can emulate VI now. Really it's a text programming environment
-</p>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-Only if you need features™ like working footnotes
-</p></div></div>
-
-
-</div>
-</div><div class="taglist"><a href="https://jasbrg.github.io/tags.html">Tags</a>: <a href="https://jasbrg.github.io/tag-hello.html">hello</a> </div><div id="archive">
+</div><div class="taglist"><a href="https://jasbrg.github.io/tags.html">Tags</a>: <a href="https://jasbrg.github.io/tag-emacs.html">emacs</a> <a href="https://jasbrg.github.io/tag-org.html">org</a> </div><div id="archive">
 <a href="https://jasbrg.github.io/archive.html">Other posts</a>
 </div>
 </div>
