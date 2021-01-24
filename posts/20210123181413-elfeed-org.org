@@ -35,7 +35,7 @@ Then, I have a couple of entries added to ~org-capture-templates~ the usual way[
 
 Ta-da! Done for now, I'm satisfied. Though I can foresee the obvious extension
 of integrating (the lately hotly contested) [[https://github.com/ytdl-org/youtube-dl][youtube-dl]]. Maybe there's already
-some extension? hmm, at least not on ~melpa~ or ~gnu~.
+some extension? hmm, at least not on ~melpa~ or ~gnu~.[fn:2]
 
 Envision it so: a tag is specified in some way, when the specified tag is added
 to a post (through ~elfeed~), it is marked for download into a specified
@@ -46,6 +46,8 @@ There is already an Emacs interface to youtube-dl, [[https://gitlab.com/tuedachu
 this functionality is probably under fifty lines. Perhaps!
 
 * Footnotes
+
+[fn:2]There is [[https://codingquark.com/emacs/2019/05/16/emacs-elfeed-youtube.html][this]] post from codingquark.com though
 
 [fn:1]Not really as depicted. I use [[https://github.com/jwiegley/use-package][use-package]] because it rocks, but it's good
 practice to keep code examples relevant and if possible, executable.
