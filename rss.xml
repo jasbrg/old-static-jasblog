@@ -4,7 +4,7 @@
 <title><![CDATA[jasblog]]></title>
 <description><![CDATA[jasblog]]></description>
 <link>https://jasbrg.github.io/</link>
-<lastBuildDate>Sat, 23 Jan 2021 18:41:44 -0600</lastBuildDate>
+<lastBuildDate>Sat, 23 Jan 2021 18:58:33 -0600</lastBuildDate>
 <item>
   <title><![CDATA[elfeed-org]]></title>
   <description><![CDATA[
@@ -46,7 +46,7 @@ Then, I have a couple of entries added to <code>org-capture-templates</code> the
 (add-to-list
  'org-capture-templates
  '("y" "YouTube Feed" entry (file+headline "~/org/feeds.org" "YouTube")
-   "**** [[%^{Channel Feed URL}][%^{Channel Name}]]"
+   "**** [[%x][%^{Channel Name}]]"
    :prepend t :immediate-finish t))
 </pre>
 </div>

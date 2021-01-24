@@ -56,7 +56,7 @@ Then, I have a couple of entries added to <code>org-capture-templates</code> the
 (add-to-list
  'org-capture-templates
  '("y" "YouTube Feed" entry (file+headline "~/org/feeds.org" "YouTube")
-   "**** [[%^{Channel Feed URL}][%^{Channel Name}]]"
+   "**** [[%x][%^{Channel Name}]]"
    :prepend t :immediate-finish t))
 </pre>
 </div>
